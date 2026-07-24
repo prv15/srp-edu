@@ -1,0 +1,51 @@
+.card{
+
+    background:#fff;
+
+    border:1px solid #E7ECF3;
+
+    border-radius:18px;
+
+    overflow:hidden;
+
+    margin-bottom:24px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.04);
+
+}
+
+.header{
+
+    padding:24px 30px;
+
+    border-bottom:1px solid #EEF2F7;
+
+}
+
+.header h2{
+
+    margin:0;
+
+    font-size:24px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+.header p{
+
+    margin-top:6px;
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
+
+.body{
+
+    padding:28px 30px;
+
+}

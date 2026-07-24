@@ -1,0 +1,61 @@
+.wrapper{
+
+    grid-column:span 4;
+
+}
+
+.chart{
+
+    height:200px;
+
+    display:flex;
+
+    align-items:flex-end;
+
+    justify-content:space-around;
+
+    gap:18px;
+
+}
+
+.barGroup{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+.bar{
+
+    width:40px;
+
+    border-radius:12px 12px 0 0;
+
+    background:linear-gradient(
+        180deg,
+        #60A5FA,
+        #2563EB
+    );
+
+    transition:.3s;
+
+}
+
+.bar:hover{
+
+    transform:scaleY(1.05);
+
+}
+
+.barGroup span{
+
+    font-size:13px;
+
+    color:var(--muted);
+
+}

@@ -1,0 +1,43 @@
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-start;
+
+    margin-bottom:24px;
+
+}
+
+.title{
+
+    margin:0;
+
+    font-size:32px;
+
+    font-weight:700;
+
+    color:#0F172A;
+
+}
+
+.description{
+
+    margin-top:8px;
+
+    color:#64748B;
+
+    font-size:15px;
+
+}
+
+.actions{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}

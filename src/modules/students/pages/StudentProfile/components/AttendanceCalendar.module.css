@@ -1,0 +1,67 @@
+.calendar{
+
+    display:grid;
+
+    grid-template-columns:repeat(7,1fr);
+
+    gap:14px;
+
+}
+
+.day{
+
+    aspect-ratio:1;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    border-radius:14px;
+
+    font-weight:700;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    color:#fff;
+
+}
+
+.day:hover{
+
+    transform:translateY(-3px);
+
+}
+
+.present{
+
+    background:#16a34a;
+
+}
+
+.absent{
+
+    background:#dc2626;
+
+}
+
+.leave{
+
+    background:#f59e0b;
+
+}
+
+.holiday{
+
+    background:#2563eb;
+
+}
+
+.late{
+
+    background:#7c3aed;
+
+}

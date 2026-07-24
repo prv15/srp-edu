@@ -1,0 +1,11 @@
+.sticky{
+
+    position:sticky;
+
+    top:16px;
+
+    z-index:100;
+
+    margin-bottom:24px;
+
+}

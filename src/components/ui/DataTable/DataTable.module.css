@@ -1,0 +1,73 @@
+.tableCard{
+
+    background:#FFFFFF;
+
+    border-radius:22px;
+
+    border:1px solid #E2E8F0;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.05);
+
+}
+
+.table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+}
+
+thead{
+
+    background:#F8FAFC;
+
+}
+
+th{
+
+    text-align:left;
+
+    padding:18px 24px;
+
+    font-size:13px;
+
+    font-weight:700;
+
+    color:#475569;
+
+    text-transform:uppercase;
+
+    letter-spacing:.04em;
+
+    border-bottom:1px solid #E2E8F0;
+
+}
+
+td{
+
+    padding:18px 24px;
+
+    border-bottom:1px solid #F1F5F9;
+
+    color:#0F172A;
+
+    font-size:15px;
+
+}
+
+tbody tr{
+
+    transition:.2s;
+
+    cursor:pointer;
+
+}
+
+tbody tr:hover{
+
+    background:#F8FAFC;
+
+}

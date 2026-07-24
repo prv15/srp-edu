@@ -1,0 +1,75 @@
+.wrapper{
+
+    grid-column:span 4;
+
+}
+
+.timeline{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.item{
+
+    display:flex;
+
+    gap:14px;
+
+    align-items:flex-start;
+
+}
+
+.icon{
+
+    width:42px;
+
+    height:42px;
+
+    border-radius:12px;
+
+    background:#F8FAFC;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:18px;
+
+    flex-shrink:0;
+
+}
+
+.content{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.content strong{
+
+    font-size:14px;
+
+    color:var(--text);
+
+    line-height:1.4;
+
+}
+
+.content span{
+
+    margin-top:4px;
+
+    font-size:12px;
+
+    color:var(--muted);
+
+}

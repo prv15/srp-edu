@@ -1,0 +1,87 @@
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:24px;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+    height:100%;
+}
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.header h2{
+    margin:0;
+    font-size:22px;
+}
+
+.header button{
+    border:none;
+    background:#2563eb;
+    color:#fff;
+    padding:8px 16px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:13px;
+}
+
+.timeline{
+    display:flex;
+    flex-direction:column;
+    gap:18px;
+}
+
+.item{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-bottom:16px;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.item:last-child{
+    border-bottom:none;
+    padding-bottom:0;
+}
+
+.item h4{
+    margin:0;
+    font-size:15px;
+    font-weight:600;
+}
+
+.item span{
+    color:#64748b;
+    font-size:13px;
+}
+
+.badge{
+    padding:8px 14px;
+    border-radius:50px;
+    color:#fff !important;
+    font-size:12px !important;
+    font-weight:600;
+}
+
+.present{
+    background:#16a34a;
+}
+
+.absent{
+    background:#dc2626;
+}
+
+.leave{
+    background:#f59e0b;
+}
+
+.holiday{
+    background:#2563eb;
+}
+
+.defaultBadge{
+    background:#64748b;
+}

@@ -1,0 +1,330 @@
+.header {
+
+    height: 76px;
+
+    background: #FFFFFF;
+
+    border-bottom: 1px solid #E5E7EB;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 0 24px;
+
+    flex-shrink: 0;
+
+    overflow: visible;
+
+}
+
+/* =====================================
+   SEARCH
+===================================== */
+
+.search {
+
+    flex: 1;
+
+    min-width: 240px;
+
+    max-width: 520px;
+
+    height: 50px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 0 18px;
+
+    background: #F8FAFC;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 14px;
+
+}
+
+.search input {
+
+    flex: 1;
+
+    border: none;
+
+    outline: none;
+
+    background: transparent;
+
+    font-size: 14px;
+
+    color: #0F172A;
+
+}
+
+.search input::placeholder {
+
+    color: #94A3B8;
+
+}
+
+/* =====================================
+   RIGHT SIDE
+===================================== */
+
+.right {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 14px;
+
+    margin-left: auto;
+
+    flex-shrink: 0;
+
+}
+
+/* =====================================
+   SELECTORS
+===================================== */
+
+.selector {
+
+    height: 48px;
+
+    padding: 0 18px;
+
+    border: 1px solid #E2E8F0;
+
+    border-radius: 14px;
+
+    background: white;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    color: #0F172A;
+
+    white-space: nowrap;
+
+}
+
+.selector:hover {
+
+    background: #F8FAFC;
+
+}
+
+/* =====================================
+   ICON BUTTONS
+===================================== */
+
+.iconButton {
+
+    position: relative;
+
+    width: 46px;
+
+    height: 46px;
+
+    border: 1px solid #E2E8F0;
+
+    background: white;
+
+    border-radius: 14px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    overflow: visible;
+
+}
+
+.iconButton:hover {
+
+    background: #F8FAFC;
+
+}
+
+/* =====================================
+   NOTIFICATION
+===================================== */
+
+.badge {
+
+    position: absolute;
+
+    top: -6px;
+
+    right: -6px;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #EF4444;
+
+    color: white;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    border: 2px solid white;
+
+}
+
+/* =====================================
+   PROFILE
+===================================== */
+
+.profile {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    border: none;
+
+    background: transparent;
+
+    cursor: pointer;
+
+    padding: 0;
+
+    white-space: nowrap;
+
+}
+
+.avatar {
+
+    width: 46px;
+
+    height: 46px;
+
+    border-radius: 50%;
+
+    background: linear-gradient(135deg,#2563EB,#3B82F6);
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    color: white;
+
+    flex-shrink: 0;
+
+}
+
+.info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+}
+
+.info strong {
+
+    font-size: 14px;
+
+    color: #0F172A;
+
+    line-height: 1.2;
+
+}
+
+.info span {
+
+    font-size: 12px;
+
+    color: #64748B;
+
+}
+.selector select{
+
+    border:none;
+
+    background:transparent;
+
+    outline:none;
+
+    font-size:15px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    appearance:none;
+
+    color:#0F172A;
+
+}
+
+/* =====================================
+   RESPONSIVE
+===================================== */
+
+@media (max-width:1400px){
+
+    .search{
+
+        max-width:380px;
+
+    }
+
+}
+
+@media (max-width:1200px){
+
+    .info{
+
+        display:none;
+
+    }
+
+}
+
+@media (max-width:1024px){
+
+    .selector span{
+
+        display:none;
+
+    }
+
+}

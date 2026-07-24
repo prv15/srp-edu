@@ -1,0 +1,241 @@
+.page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.05);
+}
+
+.feeList {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.feeRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 14px;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.feeTitle {
+    color: #475569;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.feeAmount {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.totalRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 14px;
+    padding-top: 18px;
+    border-top: 2px dashed #d1d5db;
+}
+
+.totalLabel {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.totalAmount {
+    font-size: 24px;
+    font-weight: 800;
+    color: #4f46e5;
+}
+
+.methodGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.methodCard {
+    border: 1px solid #dbe4f0;
+    border-radius: 16px;
+    padding: 22px;
+    cursor: pointer;
+    transition: .25s;
+    background: #fff;
+    margin: 10px;
+}
+
+.methodCard:hover {
+    transform: translateY(-4px);
+    border-color: #6366f1;
+    box-shadow: 0 12px 24px rgba(99,102,241,.15);
+}
+
+.methodActive {
+    border-color: #4f46e5;
+    background: linear-gradient(
+        135deg,
+        #eef2ff,
+        #f8faff
+    );
+    box-shadow: 0 12px 30px rgba(79,70,229,.20);
+    margin:10px;
+}
+
+.methodTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+}
+
+.methodSubtitle {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.fieldGrid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.fieldCard {
+    border: 1px solid #e5e7eb;
+    border-radius: 14px;
+    padding: 18px;
+    background: #fff;
+    margin:5px;
+}
+
+.fieldLabel {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: #94a3b8;
+    margin-bottom: 10px;
+}
+
+.fieldValue {
+    color: #0f172a;
+    font-size: 16px;
+    font-weight: 600;
+    word-break: break-word;
+}
+
+.statusPaid {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #dcfce7;
+    color: #15803d;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.statusPending {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: #fef3c7;
+    color: #b45309;
+    font-weight: 700;
+    font-size: 13px;
+}
+
+.buttonBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+    margin-top: 12px;
+}
+
+.leftButtons,
+.rightButtons {
+    display: flex;
+    gap: 12px;
+}
+
+.primaryButton {
+    background: linear-gradient(
+        135deg,
+        #4f46e5,
+        #6366f1
+    );
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: .25s;
+}
+
+.primaryButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(79,70,229,.25);
+}
+
+.secondaryButton {
+    background: white;
+    border: 1px solid #d1d5db;
+    color: #334155;
+    padding: 12px 22px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: .25s;
+}
+
+.secondaryButton:hover {
+    border-color: #4f46e5;
+    color: #4f46e5;
+}
+
+@media (max-width: 992px) {
+
+    .methodGrid,
+    .fieldGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .methodGrid,
+    .fieldGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .buttonBar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .leftButtons,
+    .rightButtons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .primaryButton,
+    .secondaryButton {
+        width: 100%;
+    }
+
+}

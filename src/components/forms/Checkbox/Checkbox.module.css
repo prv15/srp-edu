@@ -1,0 +1,55 @@
+.wrapper{
+
+    margin-bottom:24px;
+
+}
+
+.checkbox{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    cursor:pointer;
+
+    user-select:none;
+
+}
+
+.input{
+
+    width:18px;
+
+    height:18px;
+
+    accent-color:#2563eb;
+
+    cursor:pointer;
+
+}
+
+.label{
+
+    font-size:15px;
+
+    font-weight:600;
+
+    color:#1f2937;
+
+}
+
+.helper{
+
+    display:block;
+
+    margin-left:30px;
+
+    margin-top:6px;
+
+    color:#6b7280;
+
+    font-size:13px;
+
+}

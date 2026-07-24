@@ -1,0 +1,33 @@
+.wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.contentGrid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:24px;
+    box-shadow:0 8px 24px rgba(15,23,42,.06);
+}
+
+.card h2{
+    margin:0 0 20px;
+    font-size:24px;
+    font-weight:700;
+    color:#111827;
+}
+
+@media(max-width:1200px){
+
+    .contentGrid{
+        grid-template-columns:1fr;
+    }
+
+}

@@ -1,0 +1,61 @@
+.wrapper{
+
+    grid-column:span 4;
+
+}
+
+.grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:14px;
+
+}
+
+.action{
+
+    height:96px;
+
+    border:none;
+
+    border-radius:18px;
+
+    background:#F8FAFC;
+
+    border:1px solid var(--border);
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    gap:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.action:hover{
+
+    transform:translateY(-4px);
+
+    background:#EFF6FF;
+
+    color:var(--primary);
+
+}
+
+.action span{
+
+    font-size:13px;
+
+    font-weight:600;
+
+}

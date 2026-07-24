@@ -1,0 +1,19 @@
+.wrapper{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.topGrid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:24px;
+}
+
+@media(max-width:1100px){
+
+    .topGrid{
+        grid-template-columns:1fr;
+    }
+
+}

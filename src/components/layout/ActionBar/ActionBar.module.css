@@ -1,0 +1,65 @@
+.actionBar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:flex-end;
+
+    gap:20px;
+
+    margin-bottom:24px;
+
+    padding:18px 22px;
+
+    background:#fff;
+
+    border:1px solid #e6ebf5;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 24px rgba(15,23,42,.04);
+
+}
+
+.left{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:14px;
+
+    flex:1;
+
+}
+
+.right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+}
+
+@media(max-width:900px){
+
+    .actionBar{
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+    }
+
+    .left,
+
+    .right{
+
+        width:100%;
+
+    }
+
+}

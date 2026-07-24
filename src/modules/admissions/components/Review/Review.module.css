@@ -1,0 +1,191 @@
+.page{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+}
+
+.grid3{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.grid2{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:24px;
+}
+
+.infoCard{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:18px;
+    transition:.25s;
+}
+
+.infoCard:hover{
+    border-color:#4f46e5;
+    box-shadow:0 8px 24px rgba(79,70,229,.08);
+}
+
+.label{
+    font-size:12px;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    color:#94a3b8;
+    margin-bottom:8px;
+}
+
+.value{
+    font-size:15px;
+    font-weight:600;
+    color:#1e293b;
+    word-break:break-word;
+}
+
+.addressCard{
+    background:#fff;
+    border:1px solid #e5e7eb;
+    border-radius:16px;
+    padding:20px;
+}
+
+.addressTitle{
+    font-size:16px;
+    font-weight:700;
+    margin-bottom:18px;
+    color:#1e293b;
+}
+
+.addressRow{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    padding:12px 0;
+    border-bottom:1px solid #edf2f7;
+}
+
+.addressRow:last-child{
+    border-bottom:none;
+}
+
+.addressLabel{
+    color:#64748b;
+    font-size:14px;
+}
+
+.addressValue{
+    color:#0f172a;
+    font-weight:600;
+    text-align:right;
+}
+
+.documentGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.documentCard{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:18px;
+    border-radius:14px;
+    border:1px solid #dbe4f0;
+    background:#fff;
+}
+
+.documentTitle{
+    font-size:15px;
+    font-weight:600;
+    color:#1e293b;
+}
+
+.documentUploaded{
+    color:#15803d;
+    background:#dcfce7;
+    padding:5px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.documentMissing{
+    color:#b91c1c;
+    background:#fee2e2;
+    padding:5px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:700;
+}
+
+.declaration{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:22px;
+    border-radius:16px;
+    background:#eef4ff;
+    border:1px solid #c7d2fe;
+    font-weight:600;
+    color:#3730a3;
+}
+
+.success{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#dcfce7;
+    color:#15803d;
+    font-weight:700;
+    font-size:13px;
+}
+
+.warning{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:6px 14px;
+    border-radius:999px;
+    background:#fef3c7;
+    color:#b45309;
+    font-weight:700;
+    font-size:13px;
+}
+
+@media(max-width:1100px){
+
+    .grid3{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+}
+
+@media(max-width:768px){
+
+    .grid2,
+    .grid3,
+    .documentGrid{
+        grid-template-columns:1fr;
+    }
+
+    .addressRow{
+        flex-direction:column;
+        gap:6px;
+    }
+
+    .addressValue{
+        text-align:left;
+    }
+
+    .documentCard{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:10px;
+    }
+
+}

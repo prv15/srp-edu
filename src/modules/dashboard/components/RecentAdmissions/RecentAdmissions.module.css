@@ -1,0 +1,137 @@
+.list{
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+.item{
+
+    display:grid;
+
+    grid-template-columns:56px 1fr auto 42px;
+
+    gap:18px;
+
+    align-items:center;
+
+    padding:18px 0;
+
+    border-bottom:1px solid #EDF2F7;
+
+}
+
+.item:last-child{
+
+    border-bottom:none;
+
+}
+
+.avatar{
+
+    width:50px;
+
+    height:50px;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#2563EB,#3B82F6);
+
+    color:#fff;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    font-weight:700;
+
+    font-size:18px;
+
+}
+
+.info{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:4px;
+
+}
+
+.info h4{
+
+    margin:0;
+
+    font-size:16px;
+
+}
+
+.info span{
+
+    color:#64748B;
+
+    font-size:14px;
+
+}
+
+.info small{
+
+    color:#94A3B8;
+
+}
+
+.status{
+
+    display:flex;
+
+    flex-direction:column;
+
+    align-items:flex-end;
+
+    gap:8px;
+
+}
+
+.badge{
+
+    background:#DCFCE7;
+
+    color:#15803D;
+
+    padding:6px 12px;
+
+    border-radius:20px;
+
+    font-size:12px;
+
+    font-weight:600;
+
+}
+
+.viewButton{
+
+    width:40px;
+
+    height:40px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#F8FAFC;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+.viewButton:hover{
+
+    background:#EEF4FF;
+
+}
