@@ -10,13 +10,27 @@ function startSecureSession(): void
         return;
     }
 
+    $environment = strtolower((string)(getenv("TPS_ENV") ?: "production"));
+    $forwardedProto = strtolower(trim(explode(
+        ",",
+        (string)($_SERVER["HTTP_X_FORWARDED_PROTO"] ?? "")
+    )[0]));
+    $isSecure = ($_SERVER["HTTPS"] ?? "") === "on"
+        || $forwardedProto === "https"
+        || $environment === "production";
+    $sameSite = getenv("TPS_SESSION_SAME_SITE")
+        ?: ($environment === "production" ? "None" : "Lax");
+    if ($sameSite === "None" && !$isSecure) {
+        $sameSite = "Lax";
+    }
+
     session_name(getenv("TPS_SESSION_NAME") ?: "tps_erp_session");
     session_set_cookie_params([
         "lifetime" => 0,
         "path" => "/",
-        "secure" => ($_SERVER["HTTPS"] ?? "") === "on",
+        "secure" => $isSecure,
         "httponly" => true,
-        "samesite" => "Lax",
+        "samesite" => $sameSite,
     ]);
     ini_set("session.use_strict_mode", "1");
     ini_set("session.use_only_cookies", "1");

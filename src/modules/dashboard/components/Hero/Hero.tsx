@@ -2,6 +2,7 @@ import {
     Plus,
     UserPlus,
     FileText,
+    RefreshCw,
     Sun
 } from "lucide-react";
 
@@ -10,7 +11,15 @@ import { useInstitute } from "../../../../contexts/InstituteContext";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../providers/AuthProvider";
 
-export default function Hero() {
+export default function Hero({
+    generatedAt,
+    refreshing,
+    onRefresh,
+}: {
+    generatedAt?: string;
+    refreshing?: boolean;
+    onRefresh?: () => void;
+}) {
     const { institute } = useInstitute();
     const { user } = useAuth();
     const navigate = useNavigate();
@@ -25,15 +34,15 @@ export default function Hero() {
 
                     <Sun size={16} />
 
-                    <span>Good Afternoon</span>
+                    <span>Super Admin command center</span>
 
                 </div>
 
-                <h1>Dashboard Overview</h1>
+                <h1>{institute.name} Overview</h1>
 
                 <p>
                     Welcome back, {user?.name || "User"}.
-                    Here's what's happening across your institution today.
+                    Live institutional intelligence, operational health and recent activity for the selected tenant.
                 </p>
 
                 <div className={styles.quickStats}>
@@ -67,6 +76,12 @@ export default function Hero() {
             </div>
 
             <div className={styles.actions}>
+
+                <div className={styles.liveStatus}>
+                    <i />
+                    <div><strong>Live data</strong><span>{generatedAt ? `Updated ${new Date(generatedAt).toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" })}` : "Connecting…"}</span></div>
+                    <button aria-label="Refresh dashboard" onClick={onRefresh} disabled={refreshing}><RefreshCw size={17} className={refreshing ? styles.spinning : ""} /></button>
+                </div>
 
                 <button className={styles.primary} onClick={() => navigate("/admissions/new")}>
 

@@ -5,9 +5,20 @@ declare(strict_types=1);
 require_once __DIR__ . "/environment.php";
 
 $origin = $_SERVER["HTTP_ORIGIN"] ?? "";
-$allowedOrigins = array_values(array_filter(array_map(
+$configuredOrigins = array_values(array_filter(array_map(
     "trim",
     explode(",", getenv("TPS_ALLOWED_ORIGINS") ?: "")
+)));
+$deploymentOrigins = [
+    "https://srp-edu.vercel.app",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
+    "http://localhost:4173",
+    "http://127.0.0.1:4173",
+];
+$allowedOrigins = array_values(array_unique(array_merge(
+    $deploymentOrigins,
+    $configuredOrigins
 )));
 
 if ($origin !== "" && in_array($origin, $allowedOrigins, true)) {

@@ -1,4 +1,4 @@
-import { BadgeCheck, UserPlus, Users, VenusAndMars } from "lucide-react";
+import { BadgeCheck, BookOpenCheck, GraduationCap, UserPlus, Users, VenusAndMars } from "lucide-react";
 import type { DashboardStats } from "../../types/dashboard";
 import styles from "./KPICards.module.css";
 
@@ -32,6 +32,20 @@ export default function KPICards({ stats }: { stats: DashboardStats }) {
             detail: "Validated records",
             color: "#8B5CF6",
             icon: VenusAndMars,
+        },
+        {
+            title: "Active faculty",
+            value: Number(stats.active_faculty).toLocaleString("en-IN"),
+            detail: "Teaching workforce",
+            color: "#0EA5E9",
+            icon: GraduationCap,
+        },
+        {
+            title: "Academic catalogue",
+            value: Number(stats.active_subjects).toLocaleString("en-IN"),
+            detail: `${Number(stats.active_courses).toLocaleString("en-IN")} active programmes`,
+            color: "#EC4899",
+            icon: BookOpenCheck,
         },
     ];
 

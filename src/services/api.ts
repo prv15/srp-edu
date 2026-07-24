@@ -1,4 +1,4 @@
-const DEFAULT_API_URL = "https://thetechservices.in/srp-edu/api/v1";
+const DEFAULT_API_URL = "/api/v1";
 
 export const API_URL = (
     window.TPS_CONFIG?.API_URL

@@ -111,6 +111,12 @@
     gap:14px;
 
 }
+.liveStatus { display:grid; grid-template-columns:10px 1fr 34px; align-items:center; gap:10px; min-width:250px; padding:11px 13px; border:1px solid #d1fae5; border-radius:13px; background:#f0fdf4; }
+.liveStatus>i { width:9px; height:9px; border-radius:50%; background:#10b981; box-shadow:0 0 0 5px rgba(16,185,129,.12); }
+.liveStatus div { display:flex; flex-direction:column; }.liveStatus strong { color:#065f46; font-size:var(--font-size-xs); }.liveStatus span { margin-top:2px; color:#64748b; font-size:11px; }
+.liveStatus>button { width:34px; height:34px; padding:0; justify-content:center; border-radius:9px; background:white; color:#047857; }
+.spinning { animation:spin .8s linear infinite; }
+@keyframes spin { to { transform:rotate(360deg); } }
 
 .primary{
 

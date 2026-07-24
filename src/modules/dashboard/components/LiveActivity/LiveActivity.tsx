@@ -1,95 +1,46 @@
+import { BookOpenCheck, GraduationCap, IndianRupee, UserPlus, UsersRound } from "lucide-react";
+import type { ActivityItem } from "../../types/dashboard";
 import DashboardCard from "../DashboardCard";
 import styles from "./LiveActivity.module.css";
 
-const activities = [
+const icons = {
+    admission: UserPlus,
+    fee: IndianRupee,
+    attendance: UsersRound,
+    result: BookOpenCheck,
+    faculty: GraduationCap,
+};
 
-    {
-        time: "09:42 AM",
-        title: "Rahul Kumar admitted to Class VIII",
-        icon: "🎓"
-    },
+function relativeTime(value: string): string {
+    const time = new Date(value).getTime();
+    if (!Number.isFinite(time)) return value;
+    const seconds = Math.max(0, Math.round((Date.now() - time) / 1000));
+    if (seconds < 60) return "Just now";
+    if (seconds < 3600) return `${Math.floor(seconds / 60)} min ago`;
+    if (seconds < 86400) return `${Math.floor(seconds / 3600)} hr ago`;
+    return new Intl.DateTimeFormat("en-IN", { day: "numeric", month: "short", year: "numeric" }).format(time);
+}
 
-    {
-        time: "09:15 AM",
-        title: "₹24,500 fee collected",
-        icon: "💰"
-    },
-
-    {
-        time: "08:56 AM",
-        title: "Library book issued to Priya Singh",
-        icon: "📚"
-    },
-
-    {
-        time: "08:42 AM",
-        title: "Bus No. 3 departed",
-        icon: "🚌"
-    },
-
-    {
-        time: "08:30 AM",
-        title: "Physics attendance submitted",
-        icon: "👨‍🏫"
-    },
-
-    {
-        time: "08:15 AM",
-        title: "New admission enquiry received",
-        icon: "📝"
-    }
-
-];
-
-export default function LiveActivity() {
-
+export default function LiveActivity({ activities }: { activities: ActivityItem[] }) {
     return (
-
         <div className={styles.wrapper}>
-
-            <DashboardCard title="Live Activity">
-
+            <DashboardCard title="Live institutional activity">
+                <div className={styles.liveLabel}><i /> Live database events</div>
                 <div className={styles.timeline}>
-
-                    {activities.map((activity,index)=>(
-
-                        <div
-                            key={index}
-                            className={styles.item}
-                        >
-
-                            <div className={styles.icon}>
-
-                                {activity.icon}
-
-                            </div>
-
+                    {activities.length === 0 && <div className={styles.empty}>No operational activity has been recorded for this institute yet.</div>}
+                    {activities.map(activity => {
+                        const Icon = icons[activity.activity_type] || BookOpenCheck;
+                        return <div key={activity.id} className={styles.item}>
+                            <div className={`${styles.icon} ${styles[activity.activity_type]}`}><Icon size={18} /></div>
                             <div className={styles.content}>
-
-                                <strong>
-
-                                    {activity.title}
-
-                                </strong>
-
-                                <span>
-
-                                    {activity.time}
-
-                                </span>
-
+                                <strong>{activity.title}</strong>
+                                <p>{activity.detail}</p>
+                                <span>{relativeTime(activity.occurred_at)}</span>
                             </div>
-
-                        </div>
-
-                    ))}
-
+                        </div>;
+                    })}
                 </div>
-
             </DashboardCard>
-
         </div>
-
-    )
-
+    );
 }

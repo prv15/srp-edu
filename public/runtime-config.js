@@ -1,6 +1,7 @@
 /*
- * TPS Education Cloud deployment setting.
- * Change only this URL when the API is hosted at a different location.
+ * TPS Education Cloud API setting shared by localhost and Vercel.
+ * Both frontends intentionally use the live DirectAdmin API.
+ * Change only this URL if the API is moved.
  * Do not place database credentials or other secrets in this browser file.
  */
 window.TPS_CONFIG = Object.freeze({

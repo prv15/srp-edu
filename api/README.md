@@ -2,11 +2,11 @@
 
 ## One-file frontend deployment
 
-Every frontend request uses `public/runtime-config.js`. For local development,
-set its `API_URL` to the local API. After building and uploading the frontend,
-change only `dist/runtime-config.js` to the production API URL. No component or
-module contains its own API host, and changing this file does not require a new
-frontend build.
+Every frontend request uses `public/runtime-config.js`. The checked-in setting
+points both the localhost Vite frontend and the Vercel frontend to the live
+DirectAdmin API. No component or module contains its own API host. If the API
+moves, change only `public/runtime-config.js` (or `dist/runtime-config.js` for
+an already-built deployment); no application code needs to change.
 
 Database settings are intentionally separate. Configure the `TPS_DB_*`
 environment variables on the PHP server; never put database credentials in
@@ -24,7 +24,11 @@ environment variables on the PHP server; never put database credentials in
    `php api/bin/create-super-admin.php --name="Super Admin" --email="admin@example.org"`.
    This role automatically receives every permission and can manage every
    institute; it does not require rows in `user_institutes`.
-6. Configure `TPS_ALLOWED_ORIGINS` with the exact production frontend origin.
+6. Configure `TPS_ALLOWED_ORIGINS` with comma-separated exact browser origins.
+   For this deployment use:
+   `https://srp-edu.vercel.app,http://localhost:5173,http://127.0.0.1:5173,http://localhost:4173,http://127.0.0.1:4173`.
+   Keep `TPS_SESSION_SAME_SITE=None` and HTTPS enabled because both Vercel and
+   localhost authenticate cross-site against the DirectAdmin API.
 7. Confirm Apache allows the included `.htaccess` rules.
 
 ## Security invariants
