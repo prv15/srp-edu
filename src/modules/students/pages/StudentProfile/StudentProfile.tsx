@@ -1,6 +1,7 @@
 import { ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useInstitute } from "../../../../contexts/InstituteContext";
 
 import { getStudentById } from "../../services/student.service";
 
@@ -34,6 +35,7 @@ const tabs = [
 export default function StudentProfile() {
 
     const navigate = useNavigate();
+    const { institute } = useInstitute();
 
 const { id } = useParams();
 
@@ -52,7 +54,8 @@ useEffect(() => {
 
         try {
 
-           const data = await getStudentById(id!);
+            const controller = new AbortController();
+            const data = await getStudentById(id, institute.id, controller.signal);
 
             setStudent(data);
 
@@ -70,7 +73,7 @@ useEffect(() => {
 
     loadStudent();
 
-}, [id]);
+}, [id, institute.id]);
 
     const renderContent = () => {
 

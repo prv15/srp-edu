@@ -16,7 +16,10 @@ html{
 
 body{
 
-    font-family:"Plus Jakarta Sans",sans-serif;
+    font-family:var(--font-sans);
+    font-size:var(--font-size-md);
+    line-height:var(--line-height-body);
+    -webkit-font-smoothing:antialiased;
 
     background:#F4F7FB;
 
@@ -24,6 +27,15 @@ body{
 
     overflow:hidden;
 
+}
+
+h1 { font-size: var(--font-size-3xl); line-height: 1.2; letter-spacing: -0.025em; }
+h2 { font-size: var(--font-size-2xl); line-height: 1.25; letter-spacing: -0.02em; }
+h3 { font-size: var(--font-size-xl); line-height: 1.35; }
+h4, h5, h6 { font-size: var(--font-size-lg); line-height: 1.4; }
+
+button, input, select, textarea {
+    font-size: var(--font-size-md);
 }
 
 button{

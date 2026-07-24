@@ -21,3 +21,18 @@
     padding: 28px;
     background: #f4f7fb;
 }
+
+.backdrop { display:none; }
+
+@media (max-width:900px) {
+    .page { padding:16px; }
+    .backdrop {
+        display:block;
+        position:fixed;
+        inset:0;
+        z-index:39;
+        border:0;
+        background:rgba(15,23,42,.42);
+        backdrop-filter:blur(2px);
+    }
+}

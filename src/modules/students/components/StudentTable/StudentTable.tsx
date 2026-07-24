@@ -5,14 +5,35 @@ import {
 } from "lucide-react";
 
 import styles from "./StudentTable.module.css";
+import { useEffect, useState } from "react";
 import { useInstitute } from "../../../../contexts/InstituteContext";
 import { getStudents } from "../../services/student.service";
+import type { Student } from "../../types/student";
 
 
 export default function StudentTable(){
     const { institute } = useInstitute();
 
-const students = getStudents(institute.code);
+    const [students, setStudents] = useState<Student[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+
+    useEffect(() => {
+        const controller = new AbortController();
+        async function loadStudents() {
+            try {
+                const result = await getStudents(institute.id, controller.signal);
+                setStudents(result);
+            } catch (cause) {
+                if (cause instanceof DOMException && cause.name === "AbortError") return;
+                setError(cause instanceof Error ? cause.message : "Unable to load students.");
+            } finally {
+                if (!controller.signal.aborted) setLoading(false);
+            }
+        }
+        void loadStudents();
+        return () => controller.abort();
+    }, [institute.id]);
 
     return(
 
@@ -44,7 +65,19 @@ const students = getStudents(institute.code);
 
                 <tbody>
 
-                    {students.map(student=>(
+                    {loading && (
+                        <tr><td colSpan={7} className={styles.state}>Loading students…</td></tr>
+                    )}
+
+                    {!loading && error && (
+                        <tr><td colSpan={7} className={styles.error}>{error}</td></tr>
+                    )}
+
+                    {!loading && !error && students.length === 0 && (
+                        <tr><td colSpan={7} className={styles.state}>No students are available for this institute.</td></tr>
+                    )}
+
+                    {!loading && !error && students.map(student=>(
 
                         <tr key={student.id}>
 

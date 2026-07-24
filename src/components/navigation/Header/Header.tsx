@@ -5,12 +5,15 @@ import {
     ChevronDown,
     Search,
     Settings,
-    User
+    User,
+    Menu
 } from "lucide-react";
 import { useInstitute } from "../../../contexts/InstituteContext";
+import { useAuth } from "../../../providers/AuthProvider";
 import styles from "./Header.module.css";
 
-export default function Header() {
+export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) {
+    const { user } = useAuth();
     const {
     institute,
     institutes,
@@ -20,6 +23,9 @@ export default function Header() {
     return (
 
         <header className={styles.header}>
+            <button className={styles.menuButton} aria-label="Open navigation" onClick={onMenuToggle}>
+                <Menu size={21} />
+            </button>
 
             <div className={styles.search}>
 
@@ -84,7 +90,7 @@ export default function Header() {
 
                     <Calendar size={18} />
 
-                    <span>2026–2027</span>
+                    <span>{institute.academicYear}</span>
 
                     <ChevronDown size={16} />
 
@@ -114,9 +120,9 @@ export default function Header() {
 
                     <div className={styles.info}>
 
-                        <strong>Prakash Raj</strong>
+                        <strong>{user?.name || "User"}</strong>
 
-                        <span>Administrator</span>
+                        <span>{user?.role_name || "Authorized user"}</span>
 
                     </div>
 

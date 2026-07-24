@@ -135,8 +135,8 @@ export const navigation: NavigationItem[] = [
         children: [
 
             {
-                title: "Classes",
-                path: "/academics/classes",
+                title: "Courses",
+                path: "/academics/courses",
             },
 
             {
@@ -145,8 +145,8 @@ export const navigation: NavigationItem[] = [
             },
 
             {
-                title: "Sections",
-                path: "/academics/sections",
+                title: "Semesters & Sections",
+                path: "/academics/semesters",
             },
 
         ],

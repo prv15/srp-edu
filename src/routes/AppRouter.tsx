@@ -20,6 +20,11 @@ import SchoolAdmission from "../modules/admissions/pages/SchoolAdmission";
 import DegreeAdmission from "../modules/admissions/pages/DegreeAdmission";
 import TrainingAdmission from "../modules/admissions/pages/TrainingAdmission";
 import ImportStudents from "../modules/admissions/pages/ImportStudents";
+import ProtectedRoute from "./ProtectedRoute";
+import AuthRoute from "./AuthRoute";
+import AcademicCatalog from "../modules/academics/pages/AcademicCatalog";
+import FacultyDirectory from "../modules/faculty/pages/FacultyDirectory";
+import ExaminationOverview from "../modules/examinations/pages/ExaminationOverview";
 
 export default function AppRouter() {
     return (
@@ -29,13 +34,13 @@ export default function AppRouter() {
 
                 {/* Login */}
 
-                <Route
-                    path="/"
-                    element={<Login />}
-                />
+                <Route element={<AuthRoute />}>
+                    <Route path="/" element={<Login />} />
+                </Route>
 
                 {/* Protected Layout */}
 
+                <Route element={<ProtectedRoute />}>
                 <Route element={<AppLayout />}>
 
                     {/* Dashboard */}
@@ -85,6 +90,14 @@ export default function AppRouter() {
                         element={<ImportStudents />}
                     />
 
+                    <Route path="/academics/courses" element={<AcademicCatalog view="courses" />} />
+                    <Route path="/academics/subjects" element={<AcademicCatalog view="subjects" />} />
+                    <Route path="/academics/semesters" element={<AcademicCatalog view="semesters" />} />
+                    <Route path="/faculty" element={<FacultyDirectory />} />
+                    <Route path="/faculty/departments" element={<AcademicCatalog view="departments" />} />
+                    <Route path="/examinations" element={<ExaminationOverview />} />
+
+                </Route>
                 </Route>
 
                 {/* Unknown Routes */}

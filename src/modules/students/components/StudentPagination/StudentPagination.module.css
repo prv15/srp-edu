@@ -12,6 +12,13 @@
 
 }
 
+.pagination span {
+    margin-right:auto;
+    color:#64748b;
+    font-size:13px;
+    font-weight:600;
+}
+
 .pagination button{
 
     min-width:42px;
@@ -36,6 +43,11 @@
 
     background:#F8FAFC;
 
+}
+
+.pagination button:disabled {
+    cursor:not-allowed;
+    opacity:.45;
 }
 
 .active{

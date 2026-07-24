@@ -167,3 +167,15 @@
     background:var(--primary-hover);
 
 }
+
+@media(max-width:900px){
+    .hero { padding:24px; flex-direction:column; gap:24px; }
+    .quickStats { gap:20px; flex-wrap:wrap; }
+    .actions { display:grid; grid-template-columns:repeat(3, minmax(0, 1fr)); }
+    .actions button { justify-content:center; padding:0 14px; }
+}
+
+@media(max-width:620px){
+    .hero h1 { font-size:25px; }
+    .actions { grid-template-columns:1fr; }
+}

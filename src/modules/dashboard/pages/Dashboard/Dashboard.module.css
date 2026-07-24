@@ -8,6 +8,32 @@
 
 }
 
+.loading {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.loading span {
+    min-height: 144px;
+    border-radius: var(--radius-lg);
+    background: linear-gradient(90deg, #e8edf5 25%, #f7f9fc 50%, #e8edf5 75%);
+    background-size: 200% 100%;
+    animation: dashboardSkeleton 1.25s infinite linear;
+}
+
+@keyframes dashboardSkeleton {
+    to { background-position: -200% 0; }
+}
+
+@media (max-width: 900px) {
+    .loading { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (max-width: 520px) {
+    .loading { grid-template-columns: 1fr; }
+}
+
 .hero{
 
     background:white;

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useInstitute } from "../../../../contexts/InstituteContext";
 import { getStudents } from "../../services/student.service";
@@ -21,38 +21,89 @@ import Button from "../../../../components/ui/Button";
 import Badge from "../../../../components/ui/Badge";
 
 import Avatar from "../../../../components/ui/Avatar";
+import StudentPagination from "../../components/StudentPagination/StudentPagination";
 
 export default function StudentList(){
     const { institute } = useInstitute();
     const navigate = useNavigate();
     const [students, setStudents] = useState<Student[]>([]);
-const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
+    const [search, setSearch] = useState("");
+    const [course, setCourse] = useState("");
+    const [academicYear, setAcademicYear] = useState("");
+    const [page, setPage] = useState(1);
+    const pageSize = 25;
 
 useEffect(() => {
+    const controller = new AbortController();
 
     async function loadStudents() {
-
+        setLoading(true);
+        setError("");
         try {
-
-            const result = await getStudents(institute.id);
+            const result = await getStudents(institute.id, controller.signal);
 
             setStudents(result);
 
         } catch (error) {
-
+            if (error instanceof DOMException && error.name === "AbortError") return;
             console.error("Failed to load students", error);
+            setError(error instanceof Error ? error.message : "Unable to load students.");
 
         } finally {
-
-            setLoading(false);
+            if (!controller.signal.aborted) setLoading(false);
 
         }
 
     }
 
     loadStudents();
+    return () => controller.abort();
 
 }, [institute.id]);
+
+    const courses = useMemo(
+        () => [...new Set(students.map(student => student.course).filter(Boolean))]
+            .sort()
+            .map(value => ({ label: value, value })),
+        [students],
+    );
+    const academicYears = useMemo(
+        () => [...new Set(students.map(student => student.academicYear).filter(Boolean) as string[])]
+            .sort()
+            .map(value => ({ label: value, value })),
+        [students],
+    );
+    const visibleStudents = useMemo(() => {
+        const needle = search.trim().toLocaleLowerCase();
+        return students.filter(student => {
+            const matchesSearch = !needle || [
+                student.admissionNo,
+                student.rollNo,
+                student.firstName,
+                student.lastName,
+                student.fatherName,
+                student.mobile,
+                student.email,
+                student.course,
+                student.department,
+                student.academicYear,
+                student.status,
+            ].some(value => String(value || "").toLocaleLowerCase().includes(needle));
+            return matchesSearch
+                && (!course || student.course === course)
+                && (!academicYear || student.academicYear === academicYear);
+        });
+    }, [academicYear, course, search, students]);
+
+    const today = new Date().toISOString().slice(0, 10);
+    const pageCount = Math.max(1, Math.ceil(visibleStudents.length / pageSize));
+    const safePage = Math.min(page, pageCount);
+    const pagedStudents = visibleStudents.slice(
+        (safePage - 1) * pageSize,
+        safePage * pageSize,
+    );
     const columns: DataColumn<Student>[] = [
 
     {
@@ -157,20 +208,6 @@ render: (row: Student) => (
 
 ];
 
-if (loading) {
-
-    return (
-
-        <PageContent>
-
-            <h3>Loading students...</h3>
-
-        </PageContent>
-
-    );
-
-}
-
     return(
 
         <>
@@ -212,7 +249,7 @@ if (loading) {
 
                         title="Today's Admission"
 
-                        value={18}
+                        value={students.filter(student => student.admissionDate === today).length}
 
                     />
 
@@ -224,21 +261,38 @@ if (loading) {
 
                         <>
 
-                            <SearchField/>
+                            <SearchField
+                                value={search}
+                                onChange={event => {
+                                    setSearch(event.target.value);
+                                    setPage(1);
+                                }}
+                                placeholder="Admission no., roll no., name, mobile, course..."
+                            />
 
                             <SelectField
 
                                 label="Class"
-
-                                options={[]}
+                                value={course}
+                                onChange={event => {
+                                    setCourse(event.target.value);
+                                    setPage(1);
+                                }}
+                                placeholder="All courses"
+                                options={courses}
 
                             />
 
                             <SelectField
 
-                                label="Section"
-
-                                options={[]}
+                                label="Academic year"
+                                value={academicYear}
+                                onChange={event => {
+                                    setAcademicYear(event.target.value);
+                                    setPage(1);
+                                }}
+                                placeholder="All academic years"
+                                options={academicYears}
 
                             />
 
@@ -277,9 +331,20 @@ if (loading) {
 
                     columns={columns}
 
-                    data={students}
+                    data={pagedStudents}
+                    loading={loading}
+                    emptyMessage={error || "No students match the selected filters."}
 
                 />
+
+                {!loading && !error && (
+                    <StudentPagination
+                        page={safePage}
+                        pageSize={pageSize}
+                        total={visibleStudents.length}
+                        onPageChange={setPage}
+                    />
+                )}
 
             </PageContent>
 

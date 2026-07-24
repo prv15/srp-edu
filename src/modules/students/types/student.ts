@@ -31,6 +31,9 @@ export interface Student {
     email?: string;
 
     status: StudentStatus;
+    department?: string;
+    academicYear?: string;
+    admissionDate?: string;
 
 }
 
@@ -41,6 +44,7 @@ export interface Student {
 export interface StudentProfile {
 
     id: number;
+    institute_id: string;
 
     student_uid: string;
 

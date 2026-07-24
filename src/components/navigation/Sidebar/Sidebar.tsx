@@ -8,33 +8,28 @@ import {
 import { navigation } from "../../../config/navigation";
 
 import styles from "./Sidebar.module.css";
+import { useAuth } from "../../../providers/AuthProvider";
 
-export default function Sidebar() {
+export default function Sidebar({
+    mobileOpen = false,
+    onNavigate,
+}: {
+    mobileOpen?: boolean;
+    onNavigate?: () => void;
+}) {
+    const { user } = useAuth();
 
     const location = useLocation();
 
-    const [openMenus, setOpenMenus] = useState<string[]>([
-        "Admissions",
-        "Students",
-    ]);
+    const [openMenu, setOpenMenu] = useState<string | null>(null);
 
     function toggleMenu(title: string) {
-
-        setOpenMenus((prev) =>
-
-            prev.includes(title)
-
-                ? prev.filter((item) => item !== title)
-
-                : [...prev, title]
-
-        );
-
+        setOpenMenu(current => current === title ? null : title);
     }
 
     return (
 
-        <aside className={styles.sidebar}>
+        <aside className={`${styles.sidebar} ${mobileOpen ? styles.mobileOpen : ""}`}>
 
             <div className={styles.logoArea}>
 
@@ -60,11 +55,10 @@ export default function Sidebar() {
 
                     const hasChildren = !!item.children;
 
-                    const isOpen = openMenus.includes(item.title);
-
                     const activeChild = item.children?.some(child =>
                         location.pathname.startsWith(child.path)
                     );
+                    const isOpen = openMenu === item.title || activeChild;
 
                     if (!hasChildren) {
 
@@ -75,6 +69,7 @@ export default function Sidebar() {
                                 key={item.title}
 
                                 to={item.path!}
+                                onClick={onNavigate}
 
                                 className={({ isActive }) =>
                                     isActive
@@ -137,6 +132,7 @@ export default function Sidebar() {
                                         key={child.path}
 
                                         to={child.path}
+                                        onClick={onNavigate}
 
                                         className={({ isActive }) =>
                                             isActive
@@ -165,14 +161,14 @@ export default function Sidebar() {
             <div className={styles.footer}>
 
                 <div className={styles.avatar}>
-                    PR
+                    {(user?.name || "User").split(/\s+/).map(part => part[0]).slice(0, 2).join("")}
                 </div>
 
                 <div>
 
-                    <strong>Prakash Raj</strong>
+                    <strong>{user?.name || "User"}</strong>
 
-                    <small>Administrator</small>
+                    <small>{user?.role_name || "Authorized user"}</small>
 
                 </div>
 

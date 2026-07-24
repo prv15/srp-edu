@@ -6,8 +6,14 @@ import {
 } from "lucide-react";
 
 import styles from "./Hero.module.css";
+import { useInstitute } from "../../../../contexts/InstituteContext";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../../../providers/AuthProvider";
 
 export default function Hero() {
+    const { institute } = useInstitute();
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     return (
 
@@ -26,7 +32,7 @@ export default function Hero() {
                 <h1>Dashboard Overview</h1>
 
                 <p>
-                    Welcome back, Prakash Raj.
+                    Welcome back, {user?.name || "User"}.
                     Here's what's happening across your institution today.
                 </p>
 
@@ -36,7 +42,7 @@ export default function Hero() {
 
                         <span>Institute</span>
 
-                        <strong>SRP School</strong>
+                        <strong>{institute.name}</strong>
 
                     </div>
 
@@ -44,15 +50,15 @@ export default function Hero() {
 
                         <span>Academic Session</span>
 
-                        <strong>2026–2027</strong>
+                        <strong>{institute.academicYear}</strong>
 
                     </div>
 
                     <div>
 
-                        <span>Working Day</span>
+                        <span>Admission sessions</span>
 
-                        <strong>Day 62 / 220</strong>
+                        <strong>{institute.admissionSessions.join(" & ")}</strong>
 
                     </div>
 
@@ -62,7 +68,7 @@ export default function Hero() {
 
             <div className={styles.actions}>
 
-                <button className={styles.primary}>
+                <button className={styles.primary} onClick={() => navigate("/admissions/new")}>
 
                     <UserPlus size={18} />
 
@@ -70,7 +76,7 @@ export default function Hero() {
 
                 </button>
 
-                <button className={styles.secondary}>
+                <button className={styles.secondary} onClick={() => navigate("/students")}>
 
                     <Plus size={18} />
 
@@ -78,7 +84,7 @@ export default function Hero() {
 
                 </button>
 
-                <button className={styles.secondary}>
+                <button className={styles.secondary} onClick={() => navigate("/reports")}>
 
                     <FileText size={18} />
 

@@ -147,3 +147,15 @@
     background:#EEF4FF;
 
 }
+
+.state,
+.error {
+    padding: 42px 20px !important;
+    color: var(--muted);
+    text-align: center !important;
+}
+
+.error {
+    color: var(--danger);
+    background: #fef2f2;
+}

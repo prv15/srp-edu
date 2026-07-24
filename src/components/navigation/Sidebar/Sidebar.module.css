@@ -351,3 +351,18 @@
     font-size:13px;
 
 }
+
+@media (max-width:900px) {
+    .sidebar {
+        position:fixed;
+        top:0;
+        bottom:0;
+        left:0;
+        z-index:40;
+        width:min(86vw, 320px);
+        transform:translateX(-105%);
+        box-shadow:0 24px 60px rgba(15,23,42,.2);
+        transition:transform .25s ease;
+    }
+    .mobileOpen { transform:translateX(0); }
+}

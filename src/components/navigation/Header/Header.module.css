@@ -20,6 +20,18 @@
 
 }
 
+.menuButton {
+    display:none;
+    width:44px;
+    height:44px;
+    align-items:center;
+    justify-content:center;
+    border:1px solid #E2E8F0;
+    border-radius:12px;
+    background:#fff;
+    color:#0F172A;
+}
+
 /* =====================================
    SEARCH
 ===================================== */
@@ -327,4 +339,20 @@
 
     }
 
+}
+
+@media (max-width:900px){
+    .header { height:68px; padding:0 14px; gap:10px; }
+    .menuButton { display:flex; flex-shrink:0; }
+    .search { min-width:0; height:44px; padding:0 12px; }
+    .right { gap:8px; }
+    .right .selector:not(:first-child), .iconButton, .profile { display:none; }
+    .selector { height:44px; padding:0 10px; max-width:170px; }
+    .selector select { max-width:125px; font-size:13px; }
+}
+
+@media (max-width:620px){
+    .search { display:none; }
+    .right { flex:1; }
+    .selector { margin-left:auto; max-width:220px; }
 }

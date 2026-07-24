@@ -22,13 +22,13 @@
 
 }
 
-thead{
+.table thead{
 
     background:#f8fafc;
 
 }
 
-th{
+.table th{
 
     padding:16px 20px;
 
@@ -46,7 +46,7 @@ th{
 
 }
 
-td{
+.table td{
 
     padding:18px 20px;
 
@@ -58,7 +58,7 @@ td{
 
 }
 
-tbody tr{
+.table tbody tr{
 
     transition:.2s;
 
@@ -66,7 +66,7 @@ tbody tr{
 
 }
 
-tbody tr:hover{
+.table tbody tr:hover{
 
     background:#f8fbff;
 

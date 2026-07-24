@@ -1,29 +1,29 @@
-:root{
+:root {
+    --font-sans: Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.8125rem;
+    --font-size-md: 0.875rem;
+    --font-size-lg: 1rem;
+    --font-size-xl: 1.125rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 2rem;
+    --line-height-body: 1.5;
 
---primary:#2563EB;
+    --primary: #2563eb;
+    --primary-hover: #1d4ed8;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --purple: #8b5cf6;
+    --background: #f4f7fb;
+    --card: #ffffff;
+    --border: #e5e7eb;
+    --text: #0f172a;
+    --muted: #64748b;
 
---primary-hover:#1D4ED8;
-
---success:#10B981;
-
---warning:#F59E0B;
-
---danger:#EF4444;
-
---purple:#8B5CF6;
-
---background:#F4F7FB;
-
---card:#FFFFFF;
-
---border:#E5E7EB;
-
---text:#0F172A;
-
---muted:#64748B;
-
---shadow:0 10px 30px rgba(15,23,42,.05);
-
---radius:18px;
-
+    --shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 18px;
+    --radius: var(--radius-lg);
 }
