@@ -52,10 +52,10 @@
 
 .active{
 
-    background:#2563EB !important;
+    background:var(--primary) !important;
 
     color:#FFFFFF;
 
-    border-color:#2563EB !important;
+    border-color:var(--primary) !important;
 
 }

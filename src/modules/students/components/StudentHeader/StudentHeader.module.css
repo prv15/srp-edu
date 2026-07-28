@@ -94,7 +94,7 @@
 
     border-radius:12px;
 
-    background:#2563EB;
+    background:var(--primary);
 
     color:#FFFFFF;
 
@@ -110,7 +110,7 @@
 
 .addButton:hover{
 
-    background:#1D4ED8;
+    background:var(--primary-hover);
 
 }
 

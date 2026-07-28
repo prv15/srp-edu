@@ -51,6 +51,10 @@ export default function StudentTable(){
 
                         <th>Class / Course</th>
 
+                        <th>Semester</th>
+
+                        <th>Major Subject</th>
+
                         <th>Parent</th>
 
                         <th>Mobile</th>
@@ -66,15 +70,15 @@ export default function StudentTable(){
                 <tbody>
 
                     {loading && (
-                        <tr><td colSpan={7} className={styles.state}>Loading students…</td></tr>
+                        <tr><td colSpan={9} className={styles.state}>Loading students…</td></tr>
                     )}
 
                     {!loading && error && (
-                        <tr><td colSpan={7} className={styles.error}>{error}</td></tr>
+                        <tr><td colSpan={9} className={styles.error}>{error}</td></tr>
                     )}
 
                     {!loading && !error && students.length === 0 && (
-                        <tr><td colSpan={7} className={styles.state}>No students are available for this institute.</td></tr>
+                        <tr><td colSpan={9} className={styles.state}>No students are available for this institute.</td></tr>
                     )}
 
                     {!loading && !error && students.map(student=>(
@@ -110,6 +114,10 @@ export default function StudentTable(){
                             <td>{student.course} {student.section && `-${student.section}`}
 
                             </td>
+
+                            <td>{student.semester || "-"}</td>
+
+                            <td>{student.majorSubject || "-"}</td>
 
                             <td>{student.fatherName}</td>
 

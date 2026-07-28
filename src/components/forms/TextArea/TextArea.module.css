@@ -54,9 +54,9 @@
 
     outline:none;
 
-    border-color:#2563eb;
+    border-color:var(--primary);
 
-    box-shadow:0 0 0 4px rgba(37,99,235,.12);
+    box-shadow:0 0 0 4px rgba(var(--primary-rgb), .12);
 
 }
 

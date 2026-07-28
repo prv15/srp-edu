@@ -56,7 +56,7 @@
 
 .holiday{
 
-    background:#2563eb;
+    background:var(--primary);
 
 }
 

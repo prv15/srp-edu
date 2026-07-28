@@ -104,11 +104,11 @@
 
     background:linear-gradient(
         135deg,
-        #2563EB,
-        #3B82F6
+        var(--primary),
+        var(--primary-bright)
     );
 
-    box-shadow:0 14px 30px rgba(37,99,235,.20);
+    box-shadow:0 14px 30px rgba(var(--primary-rgb), .20);
 
     transition:.25s;
 

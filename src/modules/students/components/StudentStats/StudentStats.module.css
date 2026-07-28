@@ -58,7 +58,7 @@
 
 .blue{
 
-    background:#2563EB;
+    background:var(--primary);
 
 }
 

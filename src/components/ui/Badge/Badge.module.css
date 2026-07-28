@@ -44,9 +44,9 @@
 
 .info{
 
-    background:#dbeafe;
+    background:var(--primary-soft-strong);
 
-    color:#1d4ed8;
+    color:var(--primary-hover);
 
 }
 

@@ -134,12 +134,27 @@ export default function OverviewTab({ student }: Props) {
 
                     <div>
                         <label>Course</label>
-                        <p>{student.course_name}</p>
+                        <p>{student.course_name || "-"}</p>
+                    </div>
+
+                    <div>
+                        <label>Semester</label>
+                        <p>{student.semester_name || "-"}</p>
+                    </div>
+
+                    <div>
+                        <label>Major Subject</label>
+                        <p>{student.major_subject || "-"}</p>
                     </div>
 
                     <div>
                         <label>Academic Session</label>
-                        <p>{student.session_name}</p>
+                        <p>{student.session_name || "-"}</p>
+                    </div>
+
+                    <div>
+                        <label>Admission Session</label>
+                        <p>{student.admission_cycle || "-"}</p>
                     </div>
 
                     <div>

@@ -39,6 +39,9 @@ try {
             d.name AS department_name,
 
             c.course_name,
+            cs.semester_no,
+            cs.name AS semester_name,
+            ms.name AS major_subject,
 
             g.father_name,
             g.mother_name,
@@ -58,6 +61,15 @@ try {
 
         LEFT JOIN courses c
             ON c.id = s.course_id
+
+        LEFT JOIN course_semesters cs
+            ON cs.id = s.semester_id
+            AND cs.institute_id = s.institute_id
+            AND cs.course_id = s.course_id
+
+        LEFT JOIN subject_disciplines ms
+            ON ms.id = s.major_subject_id
+            AND ms.institute_id = s.institute_id
 
         LEFT JOIN student_guardians g
             ON g.student_id = s.id

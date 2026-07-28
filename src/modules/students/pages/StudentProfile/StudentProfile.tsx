@@ -1,6 +1,6 @@
 import { ArrowLeft } from "lucide-react";
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useInstitute } from "../../../../contexts/InstituteContext";
 
 import { getStudentById } from "../../services/student.service";
@@ -35,11 +35,14 @@ const tabs = [
 export default function StudentProfile() {
 
     const navigate = useNavigate();
+    const [searchParams, setSearchParams] = useSearchParams();
     const { institute } = useInstitute();
 
 const { id } = useParams();
 
-const [activeTab, setActiveTab] = useState("Overview");
+const requestedTab = searchParams.get("tab");
+const activeTab = tabs.find(tab => tab.toLocaleLowerCase() === requestedTab?.toLocaleLowerCase())
+    || "Overview";
 
 
 
@@ -92,7 +95,7 @@ useEffect(() => {
                 return <AttendanceTab  />;
 
             case "Fees":
-                return <FeeTab />;
+                return <FeeTab student={student!} />;
 
             case "Documents":
                 return <DocumentTab />;
@@ -230,7 +233,13 @@ return (
 
             <button
                 key={tab}
-                onClick={() => setActiveTab(tab)}
+                onClick={() => {
+                    if (tab === "Overview") {
+                        setSearchParams({}, { replace: true });
+                    } else {
+                        setSearchParams({ tab }, { replace: true });
+                    }
+                }}
                 className={
                     activeTab === tab
                         ? styles.active

@@ -23,7 +23,7 @@ const stats = [
         title: "Late",
         value: "3",
         subtitle: "Days",
-        color: "#2563eb"
+        color: "var(--primary)"
     },
     {
         title: "Attendance",

@@ -72,15 +72,15 @@
 
 .completed{
 
-    background:#EFF6FF;
+    background:var(--primary-soft);
 
-    color:#1D4ED8;
+    color:var(--primary-hover);
 
 }
 
 .completed .dot{
 
-    background:#2563EB;
+    background:var(--primary);
 
 }
 

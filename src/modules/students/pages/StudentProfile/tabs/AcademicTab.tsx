@@ -17,12 +17,24 @@ export default function AcademicTab({ student }: Props) {
             value: student.course_name || "-"
         },
         {
+            label: "Major Subject",
+            value: student.major_subject || "-"
+        },
+        {
+            label: "Semester",
+            value: student.semester_name || "-"
+        },
+        {
             label: "Department",
             value: student.department_name || "-"
         },
         {
             label: "Academic Session",
             value: student.session_name || "-"
+        },
+        {
+            label: "Admission Session",
+            value: student.admission_cycle || "-"
         },
         {
             label: "Admission Number",

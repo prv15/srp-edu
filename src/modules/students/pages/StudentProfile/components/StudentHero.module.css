@@ -5,10 +5,10 @@
     gap:32px;
     padding:32px;
     margin-bottom:24px;
-    background:linear-gradient(135deg,#2563eb,#1d4ed8);
+    background:linear-gradient(135deg,var(--primary),var(--primary-hover));
     border-radius:24px;
     color:#fff;
-    box-shadow:0 15px 40px rgba(37,99,235,.25);
+    box-shadow:0 15px 40px rgba(var(--primary-rgb), .25);
 }
 
 .left{
@@ -88,7 +88,7 @@
     cursor:pointer;
     transition:.25s;
     background:#fff;
-    color:#2563eb;
+    color:var(--primary);
 }
 
 .right button:hover{

@@ -56,10 +56,10 @@
 
 .active{
 
-    background:#2563eb;
+    background:var(--primary);
 
     color:#fff;
 
-    box-shadow:0 8px 20px rgba(37,99,235,.25);
+    box-shadow:0 8px 20px rgba(var(--primary-rgb), .25);
 
 }

@@ -32,6 +32,8 @@ export default function StudentList(){
     const [search, setSearch] = useState("");
     const [course, setCourse] = useState("");
     const [academicYear, setAcademicYear] = useState("");
+    const [semester, setSemester] = useState("");
+    const [majorSubjectId, setMajorSubjectId] = useState("");
     const [page, setPage] = useState(1);
     const pageSize = 25;
 
@@ -75,6 +77,33 @@ useEffect(() => {
             .map(value => ({ label: value, value })),
         [students],
     );
+    const semesters = useMemo(() => {
+        const options = new Map<number, string>();
+        students
+            .filter(student => !course || student.course === course)
+            .forEach(student => {
+                if (student.semesterNumber && student.semester) {
+                    options.set(student.semesterNumber, student.semester);
+                }
+            });
+        return [...options.entries()]
+            .sort((left, right) => left[0] - right[0])
+            .map(([value, label]) => ({ label, value: String(value) }));
+    }, [course, students]);
+    const majorSubjects = useMemo(() => {
+        const options = new Map<number, string>();
+        students
+            .filter(student => (!course || student.course === course)
+                && (!semester || String(student.semesterNumber) === semester))
+            .forEach(student => {
+                if (student.majorSubjectId && student.majorSubject) {
+                    options.set(student.majorSubjectId, student.majorSubject);
+                }
+            });
+        return [...options.entries()]
+            .sort((left, right) => left[1].localeCompare(right[1]))
+            .map(([value, label]) => ({ label, value: String(value) }));
+    }, [course, semester, students]);
     const visibleStudents = useMemo(() => {
         const needle = search.trim().toLocaleLowerCase();
         return students.filter(student => {
@@ -89,13 +118,17 @@ useEffect(() => {
                 student.course,
                 student.department,
                 student.academicYear,
+                student.semester,
+                student.majorSubject,
                 student.status,
             ].some(value => String(value || "").toLocaleLowerCase().includes(needle));
             return matchesSearch
                 && (!course || student.course === course)
-                && (!academicYear || student.academicYear === academicYear);
+                && (!academicYear || student.academicYear === academicYear)
+                && (!semester || String(student.semesterNumber) === semester)
+                && (!majorSubjectId || String(student.majorSubjectId) === majorSubjectId);
         });
-    }, [academicYear, course, search, students]);
+    }, [academicYear, course, majorSubjectId, search, semester, students]);
 
     const today = new Date().toISOString().slice(0, 10);
     const pageCount = Math.max(1, Math.ceil(visibleStudents.length / pageSize));
@@ -158,7 +191,27 @@ render: (row: Student) => (
 
         key: "course",
 
-        title: "Class",
+        title: "Course",
+
+    },
+
+    {
+
+        key: "semester",
+
+        title: "Semester",
+
+        render: (row: Student) => row.semester || "-",
+
+    },
+
+    {
+
+        key: "majorSubject",
+
+        title: "Major Subject",
+
+        render: (row: Student) => row.majorSubject || "-",
 
     },
 
@@ -276,10 +329,39 @@ render: (row: Student) => (
                                 value={course}
                                 onChange={event => {
                                     setCourse(event.target.value);
+                                    setSemester("");
+                                    setMajorSubjectId("");
                                     setPage(1);
                                 }}
                                 placeholder="All courses"
                                 options={courses}
+
+                            />
+
+                            <SelectField
+
+                                label="Semester"
+                                value={semester}
+                                onChange={event => {
+                                    setSemester(event.target.value);
+                                    setMajorSubjectId("");
+                                    setPage(1);
+                                }}
+                                placeholder="All semesters"
+                                options={semesters}
+
+                            />
+
+                            <SelectField
+
+                                label="Major subject"
+                                value={majorSubjectId}
+                                onChange={event => {
+                                    setMajorSubjectId(event.target.value);
+                                    setPage(1);
+                                }}
+                                placeholder="All major subjects"
+                                options={majorSubjects}
 
                             />
 

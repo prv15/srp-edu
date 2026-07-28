@@ -16,7 +16,7 @@
 
 .card:hover{
 
-    border-color:#2563eb;
+    border-color:var(--primary);
 
     transform:translateY(-2px);
 
@@ -24,7 +24,7 @@
 
 .card svg{
 
-    color:#2563eb;
+    color:var(--primary);
 
 }
 
@@ -64,7 +64,7 @@
 
     border-radius:10px;
 
-    background:#2563eb;
+    background:var(--primary);
 
     color:#fff;
 

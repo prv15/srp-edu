@@ -42,6 +42,8 @@ try {
             s.email,
             s.status,
             s.admission_date,
+            s.semester_id,
+            s.major_subject_id,
 
             i.name AS institute,
 
@@ -49,7 +51,10 @@ try {
 
             d.name AS department,
 
-            c.course_name
+            c.course_name,
+            cs.semester_no,
+            cs.name AS semester_name,
+            ms.name AS major_subject
             ,g.father_name
             ,g.mother_name
             ,g.guardian_name
@@ -69,37 +74,58 @@ try {
         LEFT JOIN courses c
             ON c.id = s.course_id
 
+        LEFT JOIN course_semesters cs
+            ON cs.id = s.semester_id
+            AND cs.institute_id = s.institute_id
+            AND cs.course_id = s.course_id
+
+        LEFT JOIN subject_disciplines ms
+            ON ms.id = s.major_subject_id
+            AND ms.institute_id = s.institute_id
+
         LEFT JOIN student_guardians g
             ON g.student_id = s.id
 
         WHERE s.institute_id = :institute
     ";
 
+    $semesterId = isset($_GET["semester_id"]) ? (int)$_GET["semester_id"] : 0;
+    $semesterNumber = isset($_GET["semester"]) ? (int)$_GET["semester"] : 0;
+    $majorSubjectId = isset($_GET["major_subject_id"]) ? (int)$_GET["major_subject_id"] : 0;
+
+    if ($semesterId > 0) {
+        $sql .= " AND s.semester_id = :semester_id";
+    } elseif ($semesterNumber > 0) {
+        $sql .= " AND cs.semester_no = :semester_no";
+    }
+
+    if ($majorSubjectId > 0) {
+        $sql .= " AND s.major_subject_id = :major_subject_id";
+    }
+
     if ($search !== '') {
 
         $sql .= "
-            AND (
-
-                s.student_name LIKE :search
-
-                OR s.admission_no LIKE :search
-
-                OR s.college_roll_no LIKE :search
-
-                OR s.registration_no LIKE :search
-
-                OR s.mobile LIKE :search
-                OR s.email LIKE :search
-                OR s.category LIKE :search
-                OR g.father_name LIKE :search
-                OR g.mother_name LIKE :search
-                OR g.guardian_name LIKE :search
-                OR g.guardian_mobile LIKE :search
-                OR d.name LIKE :search
-                OR c.course_name LIKE :search
-                OR a.session_name LIKE :search
-
-            )
+            AND CONVERT(CONCAT_WS(
+                ' ',
+                s.student_name,
+                s.admission_no,
+                s.college_roll_no,
+                s.registration_no,
+                s.mobile,
+                s.email,
+                s.category,
+                g.father_name,
+                g.mother_name,
+                g.guardian_name,
+                g.guardian_mobile,
+                d.name,
+                c.course_name,
+                a.session_name,
+                cs.name,
+                ms.name
+            ) USING utf8mb4) COLLATE utf8mb4_unicode_ci
+                LIKE CONVERT(:search USING utf8mb4) COLLATE utf8mb4_unicode_ci
         ";
     }
 
@@ -108,6 +134,16 @@ try {
     $stmt = $db->prepare($sql);
 
     $stmt->bindValue(':institute', $instituteId, PDO::PARAM_INT);
+
+    if ($semesterId > 0) {
+        $stmt->bindValue(":semester_id", $semesterId, PDO::PARAM_INT);
+    } elseif ($semesterNumber > 0) {
+        $stmt->bindValue(":semester_no", $semesterNumber, PDO::PARAM_INT);
+    }
+
+    if ($majorSubjectId > 0) {
+        $stmt->bindValue(":major_subject_id", $majorSubjectId, PDO::PARAM_INT);
+    }
 
     if ($search !== '') {
 

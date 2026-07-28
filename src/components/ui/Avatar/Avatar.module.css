@@ -12,7 +12,7 @@
 
     background:linear-gradient(
         135deg,
-        #2563eb,
+        var(--primary),
         #7c3aed
     );
 

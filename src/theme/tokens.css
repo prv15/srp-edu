@@ -11,6 +11,13 @@
 
     --primary: #2563eb;
     --primary-hover: #1d4ed8;
+    --primary-bright: #3b82f6;
+    --primary-soft: #eff6ff;
+    --primary-soft-strong: #eef4ff;
+    --primary-border: #bfdbfe;
+    --primary-text: #1e40af;
+    --primary-rgb: 37, 99, 235;
+    --primary-gradient: linear-gradient(135deg, var(--primary-hover), var(--primary-bright));
     --success: #10b981;
     --warning: #f59e0b;
     --danger: #ef4444;
@@ -26,4 +33,26 @@
     --radius-md: 12px;
     --radius-lg: 18px;
     --radius: var(--radius-lg);
+}
+
+:root[data-institute="school"] {
+    --primary: #ea580c;
+    --primary-hover: #c2410c;
+    --primary-bright: #f97316;
+    --primary-soft: #fff7ed;
+    --primary-soft-strong: #ffedd5;
+    --primary-border: #fed7aa;
+    --primary-text: #9a3412;
+    --primary-rgb: 234, 88, 12;
+}
+
+:root[data-institute="training"] {
+    --primary: #7c3aed;
+    --primary-hover: #6d28d9;
+    --primary-bright: #8b5cf6;
+    --primary-soft: #f5f3ff;
+    --primary-soft-strong: #ede9fe;
+    --primary-border: #ddd6fe;
+    --primary-text: #5b21b6;
+    --primary-rgb: 124, 58, 237;
 }

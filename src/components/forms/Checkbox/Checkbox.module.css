@@ -24,7 +24,7 @@
 
     height:18px;
 
-    accent-color:#2563eb;
+    accent-color:var(--primary);
 
     cursor:pointer;
 

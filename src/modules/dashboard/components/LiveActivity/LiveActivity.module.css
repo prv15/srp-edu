@@ -4,7 +4,7 @@
 .timeline { display:flex; flex-direction:column; max-height:520px; overflow:auto; padding-right:5px; }
 .item { position:relative; display:flex; gap:13px; padding:0 0 18px; }
 .item:not(:last-child)::after { content:""; position:absolute; top:40px; bottom:2px; left:19px; width:1px; background:#e5eaf1; }
-.icon { position:relative; z-index:1; display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:12px; color:#2563eb; background:#eff6ff; }
+.icon { position:relative; z-index:1; display:grid; place-items:center; flex:0 0 40px; height:40px; border-radius:12px; color:var(--primary); background:var(--primary-soft); }
 .fee { color:#047857; background:#ecfdf5; }.attendance { color:#7c3aed; background:#f5f3ff; }.result { color:#b45309; background:#fffbeb; }.faculty { color:#0369a1; background:#f0f9ff; }
 .content { min-width:0; padding-top:1px; }.content strong { display:block; color:var(--text); font-size:var(--font-size-sm); line-height:1.4; }.content p { margin:3px 0; overflow:hidden; color:var(--muted); font-size:var(--font-size-xs); text-overflow:ellipsis; white-space:nowrap; }.content span { color:#94a3b8; font-size:11px; font-weight:650; }
 .empty { padding:34px 12px; color:var(--muted); text-align:center; }

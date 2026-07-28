@@ -132,14 +132,14 @@
 }
 
 .primaryButton {
-    background: linear-gradient(135deg, #2563eb, #1d4ed8);
+    background: linear-gradient(135deg, var(--primary), var(--primary-hover));
     color: #fff;
     border: none;
 }
 
 .primaryButton:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(37,99,235,.28);
+    box-shadow: 0 10px 24px rgba(var(--primary-rgb), .28);
 }
 
 .secondaryButton {
@@ -150,8 +150,8 @@
 
 .secondaryButton:hover {
     background: #f8fafc;
-    border-color: #2563eb;
-    color: #2563eb;
+    border-color: var(--primary);
+    color: var(--primary);
 }
 
 @keyframes popIn {

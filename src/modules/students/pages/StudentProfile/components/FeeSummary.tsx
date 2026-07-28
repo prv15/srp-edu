@@ -12,7 +12,7 @@ const summary = [
         value: "₹75,000",
         subtitle: "Academic Year 2025-26",
         icon: IndianRupee,
-        color: "#2563eb",
+        color: "var(--primary)",
     },
     {
         title: "Paid",

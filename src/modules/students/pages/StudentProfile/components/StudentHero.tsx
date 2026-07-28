@@ -56,7 +56,21 @@ export default function StudentHero({
                         <span>
 
                             Session :
-                            {student.session_name}
+                            {student.session_name || "-"}
+
+                        </span>
+
+                        <span>
+
+                            Semester :
+                            {student.semester_name || "-"}
+
+                        </span>
+
+                        <span>
+
+                            Major :
+                            {student.major_subject || "-"}
 
                         </span>
 

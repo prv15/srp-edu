@@ -26,7 +26,7 @@ export default function StatsCard({
 
     icon,
 
-    color="#2563eb",
+    color="var(--primary)",
 
     subtitle,
 

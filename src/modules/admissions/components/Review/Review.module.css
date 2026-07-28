@@ -127,7 +127,7 @@
     justify-content:center;
     padding:22px;
     border-radius:16px;
-    background:#eef4ff;
+    background:var(--primary-soft-strong);
     border:1px solid #c7d2fe;
     font-weight:600;
     color:#3730a3;

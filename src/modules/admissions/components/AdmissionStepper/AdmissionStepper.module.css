@@ -62,7 +62,7 @@
 
 .active .icon svg{
 
-    stroke:#2563EB;
+    stroke:var(--primary);
 
 }
 

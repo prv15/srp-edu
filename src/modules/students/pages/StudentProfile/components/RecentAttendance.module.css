@@ -20,7 +20,7 @@
 
 .header button{
     border:none;
-    background:#2563eb;
+    background:var(--primary);
     color:#fff;
     padding:8px 16px;
     border-radius:10px;
@@ -79,7 +79,7 @@
 }
 
 .holiday{
-    background:#2563eb;
+    background:var(--primary);
 }
 
 .defaultBadge{

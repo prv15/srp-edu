@@ -3,13 +3,13 @@ import {
     Building2,
     Calendar,
     ChevronDown,
-    Search,
     Settings,
     User,
     Menu
 } from "lucide-react";
 import { useInstitute } from "../../../contexts/InstituteContext";
 import { useAuth } from "../../../providers/AuthProvider";
+import GlobalSearch from "../GlobalSearch";
 import styles from "./Header.module.css";
 
 export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) {
@@ -27,16 +27,7 @@ export default function Header({ onMenuToggle }: { onMenuToggle?: () => void }) 
                 <Menu size={21} />
             </button>
 
-            <div className={styles.search}>
-
-                <Search size={18} />
-
-                <input
-                    type="text"
-                    placeholder="Search students, admissions, staff..."
-                />
-
-            </div>
+            <GlobalSearch />
 
             <div className={styles.right}>
 

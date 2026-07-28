@@ -44,7 +44,7 @@
 
     border-radius:14px;
 
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    background:linear-gradient(135deg,var(--primary),var(--primary-bright));
 
     color:#fff;
 
@@ -146,15 +146,15 @@
 
     background:#F8FAFC;
 
-    color:#2563EB;
+    color:var(--primary);
 
 }
 
 .active{
 
-    background:#EEF4FF;
+    background:var(--primary-soft-strong);
 
-    color:#2563EB;
+    color:var(--primary);
 
 }
 
@@ -204,15 +204,15 @@
 
     background:#F8FAFC;
 
-    color:#2563EB;
+    color:var(--primary);
 
 }
 
 .activeGroup{
 
-    background:#EEF4FF;
+    background:var(--primary-soft-strong);
 
-    color:#2563EB;
+    color:var(--primary);
 
 }
 
@@ -276,15 +276,15 @@
 
     background:#F8FAFC;
 
-    color:#2563EB;
+    color:var(--primary);
 
 }
 
 .activeChild{
 
-    background:#EEF4FF;
+    background:var(--primary-soft-strong);
 
-    color:#2563EB;
+    color:var(--primary);
 
     font-weight:600;
 
@@ -318,7 +318,7 @@
 
     border-radius:50%;
 
-    background:linear-gradient(135deg,#2563EB,#3B82F6);
+    background:linear-gradient(135deg,var(--primary),var(--primary-bright));
 
     color:#FFFFFF;
 

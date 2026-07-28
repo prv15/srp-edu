@@ -16,6 +16,11 @@ type StudentApi = {
     session_name?: string;
     admission_date?: string;
     father_name?: string;
+    semester_id?: string | number | null;
+    semester_no?: string | number | null;
+    semester_name?: string | null;
+    major_subject_id?: string | number | null;
+    major_subject?: string | null;
 };
 
 export async function getStudents(
@@ -56,6 +61,11 @@ export async function getStudents(
             department: row.department || "",
             academicYear: row.session_name || "",
             admissionDate: row.admission_date || "",
+            semesterId: Number(row.semester_id) || undefined,
+            semester: row.semester_name || "",
+            semesterNumber: Number(row.semester_no) || undefined,
+            majorSubjectId: Number(row.major_subject_id) || undefined,
+            majorSubject: row.major_subject || "",
             status:
                 row.status === "Active"
                     ? "Active"

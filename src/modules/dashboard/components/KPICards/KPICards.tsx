@@ -9,7 +9,7 @@ export default function KPICards({ stats }: { stats: DashboardStats }) {
             title: "Enrolled students",
             value: Number(stats.students).toLocaleString("en-IN"),
             detail: "Selected institute",
-            color: "#2563EB",
+            color: "var(--primary)",
             icon: Users,
         },
         {

@@ -39,7 +39,7 @@
     background:linear-gradient(
         180deg,
         #60A5FA,
-        #2563EB
+        var(--primary)
     );
 
     transition:.3s;

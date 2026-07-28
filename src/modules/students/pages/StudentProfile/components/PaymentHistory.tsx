@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
     Download,
     Smartphone,
@@ -5,166 +6,127 @@ import {
     Landmark,
     Wallet,
 } from "lucide-react";
-
+import toast from "react-hot-toast";
+import {
+    downloadFeeReceipt,
+    type FeeReceiptSummary,
+} from "../../../services/fee.service";
 import styles from "./PaymentHistory.module.css";
 
-const payments = [
-    {
-        receipt: "RCPT-2026-001",
-        date: "10 Jul 2026",
-        amount: 12500,
-        method: "UPI",
-        status: "Paid",
-    },
-    {
-        receipt: "RCPT-2026-002",
-        date: "10 Jun 2026",
-        amount: 12500,
-        method: "Card",
-        status: "Paid",
-    },
-    {
-        receipt: "RCPT-2026-003",
-        date: "10 May 2026",
-        amount: 12500,
-        method: "Cash",
-        status: "Paid",
-    },
-    {
-        receipt: "RCPT-2026-004",
-        date: "10 Apr 2026",
-        amount: 12500,
-        method: "Bank",
-        status: "Pending",
-    },
-];
-
-function paymentIcon(method: string) {
-
+function paymentIcon(method: string | null) {
     switch (method) {
-
         case "UPI":
             return <Smartphone size={18} />;
-
         case "Card":
             return <CreditCard size={18} />;
-
         case "Cash":
             return <Wallet size={18} />;
-
         default:
             return <Landmark size={18} />;
-
     }
-
 }
 
-export default function PaymentHistory() {
+function formattedDate(value: string): string {
+    const date = new Date(value);
+    return Number.isFinite(date.getTime())
+        ? new Intl.DateTimeFormat("en-IN", {
+            day: "2-digit",
+            month: "short",
+            year: "numeric",
+        }).format(date)
+        : value;
+}
+
+export default function PaymentHistory({
+    receipts,
+    instituteId,
+    loading,
+    error,
+}: {
+    receipts: FeeReceiptSummary[];
+    instituteId: number;
+    loading: boolean;
+    error: string;
+}) {
+    const [downloadingId, setDownloadingId] = useState<number | null>(null);
+
+    const download = async (receipt: FeeReceiptSummary) => {
+        setDownloadingId(receipt.id);
+        try {
+            await downloadFeeReceipt(instituteId, receipt);
+            toast.success("Fee receipt downloaded.");
+        } catch (cause) {
+            toast.error(cause instanceof Error ? cause.message : "Unable to download receipt.");
+        } finally {
+            setDownloadingId(null);
+        }
+    };
 
     return (
-
         <div className={styles.card}>
-
             <div className={styles.header}>
-
-                <h2>Payment History</h2>
-
-                <button>
-
-                    View All
-
-                </button>
-
+                <div>
+                    <h2>Payment Receipts</h2>
+                    <span>Official computer-generated fee receipts</span>
+                </div>
             </div>
-
-            <table className={styles.table}>
-
-                <thead>
-
-                    <tr>
-
-                        <th>Receipt</th>
-
-                        <th>Date</th>
-
-                        <th>Method</th>
-
-                        <th>Amount</th>
-
-                        <th>Status</th>
-
-                        <th></th>
-
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    {payments.map((payment) => (
-
-                        <tr key={payment.receipt}>
-
-                            <td>{payment.receipt}</td>
-
-                            <td>{payment.date}</td>
-
-                            <td>
-
-                                <div className={styles.method}>
-
-                                    {paymentIcon(payment.method)}
-
-                                    {payment.method}
-
-                                </div>
-
-                            </td>
-
-                            <td>
-
-                                ₹{payment.amount.toLocaleString("en-IN")}
-
-                            </td>
-
-                            <td>
-
-                                <span
-                                    className={
-                                        payment.status === "Paid"
-                                            ? styles.paid
-                                            : styles.pending
-                                    }
-                                >
-
-                                    {payment.status}
-
-                                </span>
-
-                            </td>
-
-                            <td>
-
-                                <button
-                                    className={styles.download}
-                                >
-
-                                    <Download size={16} />
-
-                                </button>
-
-                            </td>
-
+            <div className={styles.tableWrap}>
+                <table className={styles.table}>
+                    <thead>
+                        <tr>
+                            <th>Receipt</th>
+                            <th>Date</th>
+                            <th>Session</th>
+                            <th>Method</th>
+                            <th>Paid Amount</th>
+                            <th>Balance</th>
+                            <th>Receipt PDF</th>
                         </tr>
-
-                    ))}
-
-                </tbody>
-
-            </table>
-
+                    </thead>
+                    <tbody>
+                        {loading && (
+                            <tr><td colSpan={7} className={styles.state}>Loading fee receipts…</td></tr>
+                        )}
+                        {!loading && error && (
+                            <tr><td colSpan={7} className={styles.error}>{error}</td></tr>
+                        )}
+                        {!loading && !error && receipts.length === 0 && (
+                            <tr>
+                                <td colSpan={7} className={styles.state}>
+                                    No issued fee receipts are available for this student.
+                                </td>
+                            </tr>
+                        )}
+                        {!loading && !error && receipts.map(receipt => (
+                            <tr key={receipt.id}>
+                                <td><strong>{receipt.receipt_no}</strong></td>
+                                <td>{formattedDate(receipt.issued_at)}</td>
+                                <td>{receipt.session_name || receipt.semester_name || "-"}</td>
+                                <td>
+                                    <div className={styles.method}>
+                                        {paymentIcon(receipt.payment_mode)}
+                                        {receipt.payment_mode || "-"}
+                                    </div>
+                                </td>
+                                <td>₹{Number(receipt.paid_amount).toLocaleString("en-IN")}</td>
+                                <td>₹{Number(receipt.balance_amount).toLocaleString("en-IN")}</td>
+                                <td>
+                                    <button
+                                        type="button"
+                                        className={styles.download}
+                                        disabled={downloadingId === receipt.id}
+                                        onClick={() => void download(receipt)}
+                                        aria-label={`Download receipt ${receipt.receipt_no}`}
+                                    >
+                                        <Download size={16} />
+                                        {downloadingId === receipt.id ? "Preparing…" : "Download"}
+                                    </button>
+                                </td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            </div>
         </div>
-
     );
-
 }

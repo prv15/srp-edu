@@ -34,6 +34,11 @@ export interface Student {
     department?: string;
     academicYear?: string;
     admissionDate?: string;
+    semesterId?: number;
+    semester?: string;
+    semesterNumber?: number;
+    majorSubjectId?: number;
+    majorSubject?: string;
 
 }
 
@@ -102,6 +107,12 @@ export interface StudentProfile {
     department_name: string;
 
     course_name: string;
+    semester_id: number | null;
+    semester_no: number | null;
+    semester_name: string | null;
+    major_subject_id: number | null;
+    major_subject: string | null;
+    admission_cycle: "January" | "July" | null;
 
     father_name: string | null;
 
